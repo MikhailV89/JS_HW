@@ -1,16 +1,20 @@
-const userNumber = prompt('Enter number');
-const newNumber = userNumber.split('').map(Number);
+const numberRequest = +prompt('Please write number');
+let valuePrime = 2;
+let resultPrime = true;
 
-let allEqual = newNumber[0] === newNumber[1] && newNumber[1] === newNumber[2];
-let anyEqual = newNumber[0] ===newNumber[1] || newNumber[1] === newNumber[2] || newNumber[0] ===newNumber[2];
+while (!numberRequest || isNaN(parseInt(numberRequest))) {
+    numberRequest = +prompt('Enter a prime number!');
+}
 
-console.log("Чи всі цифри однакові:", allEqual ? "Так" : "Ні");
-console.log("Чи є серед цифр цифри однакові:", anyEqual ? "Так" : "Ні");
+do {
+    if (numberRequest % valuePrime === 0 && valuePrime !== numberRequest || numberRequest === 1) {
+        resultPrime = false;
+    }
+    valuePrime++;
+} while (valuePrime < numberRequest);
 
-if (allEqual) {
-    console.log("Всі цифри однакові:", newNumber[0]);
-} else if (anyEqual) {
-    console.log("Серед цифр є однакові:", newNumber[0] === newNumber[1] ? newNumber[0] : (newNumber[0] === newNumber[2] ? newNumber[0] : newNumber[1]));
+if (resultPrime) {
+    console.log(`Число ${numberRequest} є простим числом.`);
 } else {
-    console.log("Цифри не повторюються.");
+    console.log(`Число ${numberRequest} не є простим числом.`);
 }
